@@ -21,20 +21,29 @@ Rules:
 ```
 Hand this work off to a different coding agent (OpenCode, Claude Code, Codex, or similar).
 
-First, run `git status`, `git log --oneline -5`, `git diff --stat`, and `git stash list`. Use the actual output. Do not describe repo state from memory.
+Setup, in this order:
+1. Run `date +%Y%m%d-%H%M%S` and use its actual output as the timestamp. Do not guess the current date.
+2. Ensure a `handoffs/` directory exists at the repo root.
+3. Ensure it is ignored locally: if `handoffs/` is not already listed in `.git/info/exclude`, append it. Do not modify the tracked `.gitignore`.
+4. List `handoffs/`. If prior handoff files exist, read the two most recent before writing.
+5. Run `git status`, `git log --oneline -5`, `git diff --stat`, and `git stash list`. Use the actual output. Do not describe repo state from memory.
 
-Then write `HANDOFF.md` at the repo root containing:
+Write `handoffs/HANDOFF_<timestamp>.md` containing:
+- Previous handoffs: filenames already in this directory, oldest first, or "none".
 - Goal: what we are trying to accomplish, and why this approach.
-- State: branch, base commit SHA, which files are modified / staged / untracked, anything stashed. Taken from the commands above.
+- State: branch, base commit SHA, files modified / staged / untracked, anything stashed. From the commands above.
 - Done and verified: complete AND confirmed by a test or manual check. Name the check.
 - Done but unverified: written but not yet run. Be strict about this line. If you have not seen it pass, it goes here.
-- Remaining: the steps left, in the order they should be done.
-- Dead ends: approaches tried that failed, and why, so they are not retried.
-- Debris: temporary logging, commented-out code, scratch files, hardcoded values you introduced that must be removed before this ships. Give paths and line numbers.
+- Remaining: steps left, in the order they should be done.
+- Dead ends: approaches tried that failed, and why. Carry forward unresolved entries from prior handoffs. Mark each [carried] or [new].
+- Debris: temporary logging, commented-out code, scratch files, hardcoded values that must be removed before shipping. Paths and line numbers. Carry forward anything from prior handoffs, but confirm it is still in the tree first.
+- Corrections: any claim in a prior handoff that turned out to be wrong. State the claim and what is actually true. Omit this section if there are none.
 - Environment: exact build / run / test commands, plus services, env vars, or ports required.
 - Gotchas: anything surprising about this codebase that cost you time.
 
-Finally, output in a single fenced code block a short prompt I can paste into the next agent, telling it to read `HANDOFF.md`, verify the described state against the actual repo before trusting it, and continue from the first item under Remaining.
+This file must stand alone for current state. The next agent should not need to read older handoffs to continue.
+
+Finally, output in a single fenced code block a short prompt I can paste into the next agent. It must name the exact filename you just wrote, tell the agent to read it, verify the described state against the actual repo before trusting it, and continue from the first item under Remaining. Use the real filename, not a placeholder.
 
 Be accurate rather than flattering about your own progress. Work described as finished that is not finished is the most expensive error here.
 ```
