@@ -1,3 +1,24 @@
+# Coding Agent Prompts
+
+Reusable prompts for transferring context between coding agents and closing out a working session.
+
+## Contents
+
+- [Handoff Prompts](#handoff-prompts)
+  - [1. Inline Context Handoff](#1-inline-context-handoff)
+  - [2. File-Based Handoff](#2-file-based-handoff)
+- [Session Wrap-Up](#session-wrap-up)
+  - [3. Chat Summary](#3-chat-summary)
+  - [4. Single Commit](#4-single-commit)
+
+---
+
+## Handoff Prompts
+
+### 1. Inline Context Handoff
+
+Produces one self-contained prompt to paste into a fresh agent that has the repo but no conversation history. No files written.
+
 ```
 Write a single self-contained prompt that I will paste into a fresh coding agent. Output only that prompt, in one fenced code block, with no commentary around it.
 
@@ -17,6 +38,10 @@ Rules:
 - Tool-agnostic: no slash commands, no agent-specific config files or features.
 - Under 400 words. Cut background before cutting file references.
 ```
+
+### 2. File-Based Handoff
+
+Writes a durable, timestamped handoff document to `handoffs/`, carries forward unresolved items from prior handoffs, and emits a pointer prompt for the next agent.
 
 ```
 Hand this work off to a different coding agent (OpenCode, Claude Code, Codex, or similar).
@@ -48,9 +73,21 @@ Finally, output in a single fenced code block a short prompt I can paste into th
 Be accurate rather than flattering about your own progress. Work described as finished that is not finished is the most expensive error here.
 ```
 
+---
+
+## Session Wrap-Up
+
+### 3. Chat Summary
+
+Recaps what was discussed, decided, and completed in the current session.
+
 ```
 Summarize everything discussed and decided and done in this chat so I can recall the important things we worked on/discussed.
 ```
+
+### 4. Single Commit
+
+Reviews the working tree, stages everything relevant, and commits once with a structured message and no AI attribution.
 
 ```
 Commit all current work as a single commit.
