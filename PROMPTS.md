@@ -96,7 +96,7 @@ Commit all current work as a single commit.
 2. Message format:
    - Subject: one line, imperative mood, 72 chars or fewer, no trailing period.
    - Blank line.
-   - Body: two or three paragraphs covering what changed, why it changed, and any tradeoffs or known follow-up work. Wrap at 72 chars.
+   - Body (optional): two or three paragraphs covering what changed, why it changed, and any tradeoffs or known follow-up work. Wrap at 72 chars.
 3. No AI attribution anywhere in the commit: no Co-Authored-By trailers, no "Generated with" footers, no tool names, no emoji.
 4. Do not push, amend, or rebase. Stop after the commit.
 ```
