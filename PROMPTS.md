@@ -36,7 +36,6 @@ Rules:
 - File paths and facts over narrative. No recap of your investigation process.
 - Never reference this conversation, "above", "as we discussed", or anything outside the repo.
 - Tool-agnostic: no slash commands, no agent-specific config files or features.
-- Under 400 words. Cut background before cutting file references.
 ```
 
 ### 2. File-Based Handoff
