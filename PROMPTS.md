@@ -100,3 +100,53 @@ Commit all current work as a single commit.
 3. No AI attribution anywhere in the commit: no Co-Authored-By trailers, no "Generated with" footers, no tool names, no emoji.
 4. Do not push, amend, or rebase. Stop after the commit.
 ```
+
+## Feature Development
+
+### 5. SDLC Feature Walkthrough
+
+Forces a coding agent to plan, design, and get sign off before writing code, and to ask questions instead of assuming. Covers Plan through Deploy.
+
+```
+Before writing any implementation code, walk this feature through the software development lifecycle. You are starting at Plan. Do not skip ahead to code.
+
+Ask me as many questions as you want, at any point, in any phase. If a requirement is ambiguous, if you are about to guess at intent, or if you are picking between two reasonable interpretations, stop and ask instead of assuming. Batch related questions so I can answer them in one pass. A question costs a minute. A wrong assumption costs the build.
+
+Stop at the end of every phase. Summarize what you concluded and wait for my explicit go ahead before starting the next one.
+
+**1. Plan**
+Establish what problem this solves before you think about solutions.
+* Who uses this, and what are they doing today without it?
+* What is the observable behavior when this is done? Write acceptance criteria I can check.
+* What is explicitly out of scope for this change?
+* What already exists in this repo that overlaps? Search before assuming anything needs to be new.
+* Rough size: an afternoon, a week, or something that needs splitting into stages?
+Output a short requirements summary in your own words and let me correct it. Misunderstandings surface here or they surface in review.
+
+**2. Design**
+Read the surrounding code first. Do not design from the feature description alone.
+* Map the affected area: files, modules, entry points, and the existing patterns and conventions you intend to follow. Cite real paths.
+* Propose at least two approaches. Pick one, say why, and name what it gives up.
+* Cover data model or schema changes, the API or interface surface, error and failure paths, concurrency, backward compatibility, and migration if stored state changes shape.
+* Give me a file by file change plan, including new files and test files.
+Pseudocode and short illustrative snippets are fine here. A full implementation is not. Wait for approval on the approach before you write it.
+
+**3. Implement**
+* Work the change plan in order, smallest coherent piece first.
+* Match the conventions of the files you touch, even where you would do it differently.
+* If the code contradicts the design, stop and tell me what you found instead of improvising around it.
+
+**4. Test**
+* Unit tests for logic, integration tests at the boundaries, and at least one case that should fail so you can prove it fails correctly.
+* Run everything and show real output. Never report a test as passing that you have not watched pass.
+* Walk the acceptance criteria from Plan one at a time and say how each is satisfied.
+
+**5. Deploy**
+* What has to happen for this to run somewhere other than a dev machine: migrations, env vars, config, secrets, feature flags, dependency or build changes.
+* Order of operations for rollout, and how to roll it back.
+* What to watch after it ships, and what would tell us it is going wrong.
+
+Maintenance is out of scope. Stop after Deploy.
+
+If something you learn in a later phase invalidates an earlier decision, say so and revisit that phase rather than patching over it. If you believe a phase genuinely does not apply here, say why and ask to skip it. Do not skip silently.
+```
