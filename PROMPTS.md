@@ -10,6 +10,8 @@ Reusable prompts for transferring context between coding agents and closing out 
 - [Session Wrap-Up](#session-wrap-up)
   - [3. Chat Summary](#3-chat-summary)
   - [4. Single Commit](#4-single-commit)
+- [Feature Development](#feature-development)
+  - [5. SDLC Walkthrough](#5-sdlc-feature-walkthrough)
 
 ---
 
