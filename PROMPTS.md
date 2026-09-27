@@ -12,6 +12,8 @@ Reusable prompts for transferring context between coding agents and closing out 
   - [4. Single Commit](#4-single-commit)
 - [Feature Development](#feature-development)
   - [5. SDLC Walkthrough](#5-sdlc-feature-walkthrough)
+- [Model Testing](#model-testing)
+  - [*. Stress Tests](#stress-tests)
 
 ---
 
@@ -150,4 +152,18 @@ Pseudocode and short illustrative snippets are fine here. A full implementation 
 Maintenance is out of scope. Stop after Deploy.
 
 If something you learn in a later phase invalidates an earlier decision, say so and revisit that phase rather than patching over it. If you believe a phase genuinely does not apply here, say why and ask to skip it. Do not skip silently.
+```
+
+
+## Model Testing
+### Stress tests
+#### Which Integers Satisfy (medium difficulty > 5m of work on qwen38 27B at 50tk/s reasoning)
+```
+How many 5 digit positive integers satisfy all of the following?
+
+1. All five digits are different.
+2. The digits sum to 23.
+3. The number is divisible by 11.
+
+Work it out by hand. Do not guess or estimate. Set up the problem carefully, split it into cases, count each case exactly, and then go back and verify every case a second time using a different method before giving your final answer. If the two methods disagree, find the error and fix it. Give the final count as a single integer at the end.
 ```
