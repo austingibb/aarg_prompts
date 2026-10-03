@@ -158,6 +158,7 @@ If something you learn in a later phase invalidates an earlier decision, say so 
 ## Model Testing
 ### Stress tests
 #### Which Integers Satisfy (medium difficulty > 5m of work on qwen38 27B at 50tk/s reasoning)
+##### Prompt
 ```
 How many 5 digit positive integers satisfy all of the following?
 
@@ -167,3 +168,11 @@ How many 5 digit positive integers satisfy all of the following?
 
 Work it out by hand. Do not guess or estimate. Set up the problem carefully, split it into cases, count each case exactly, and then go back and verify every case a second time using a different method before giving your final answer. If the two methods disagree, find the error and fix it. Give the final count as a single integer at the end.
 ```
+##### Solution
+
+So the independent count again gives
+\[
+148+28=176.
+\]
+Both methods agree.
+176
